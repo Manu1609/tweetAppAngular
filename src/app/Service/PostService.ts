@@ -11,13 +11,15 @@ export class PostService {
     constructor(private http: HttpClient) { }
 
     private apiServer = "http://localhost:9090/api/v1.0/tweets";
-    private userName = localStorage.getItem('currentUser');
+    private localUser = localStorage.getItem('currentUser');
+
+    localuser = this.localUser.replace('"','').replace('"','');
 
     public getAllTweets(): Observable<Post> {
         return this.http.get<Post>(`${this.apiServer}/all`);
     }
     public postCreate(post: Post):Observable<Post>{
-        return this.http.post<Post>(`${this.apiServer}/${this.userName}/add`,post);
+        return this.http.post<Post>(`${this.apiServer}/${this.localuser}/add`,post);
     }
 
 }

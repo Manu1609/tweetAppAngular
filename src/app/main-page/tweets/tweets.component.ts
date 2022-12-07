@@ -1,47 +1,46 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entity/TweetRequest/post';
 import { PostService } from 'src/app/Service/PostService';
-import { SignInComponent } from 'src/app/user/sign-in/sign-in.component';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
+import { library as legacyLibrary } from '@fortawesome/fontawesome-svg-core';
+
 
 @Component({
   selector: 'app-tweets',
   templateUrl: './tweets.component.html',
   styleUrls: ['./tweets.component.css']
 })
-export class TweetsComponent implements OnInit {
+export class TweetsComponent  implements OnInit {
 
-  username :string = localStorage.getItem('currentUser');
-  tweetPost : Post;
-
-  tweetForm = new FormGroup({
-    tweetText: new FormControl("", Validators.required),
-  });
-    constructor(private postService: PostService,private router:Router) { }
-
-  ngOnInit()  {
-  }
+  userName :string = localStorage.getItem('currentUser');
+  username = this.userName.replace('"','').replace('"','');
+  tweet: Post | undefined;
+  faIcon: any;
+  faSolidIcon: any;
   
-  createPost(){
-    this.tweetPost = new Post();{
-    this.tweetPost.tweet = this.tweetForm.value.tweetText;
-    this.tweetPost.userName = localStorage.getItem('currentUser');
-    this.tweetPost.likeCount = 0;
-    console.log(this.tweetPost.tweet)
-    }
+  constructor(private postService: PostService, private route: ActivatedRoute,private router:Router) { 
+     legacyLibrary.add(faHeart, faSolidHeart);
+  }
 
-    this.postService.postCreate(this.tweetPost).subscribe(
+  ngOnInit(): void {
+    this.getAllTweets()
+  }
+
+  public getAllTweets(){
+    this.postService.getAllTweets().subscribe(
       (response: Post) => {
-        this.tweetPost = response;
-        console.log(this.tweetPost);
-        if(this.tweetPost !== null){
-          alert("Post Successfull")
-          // this.router.navigate(['']);
-        }
-      
-      }
+        this.tweet = response;
+        console.log(this.tweet);
+      },   
     )
   }
+  
+
+ 
+
+
 
 }

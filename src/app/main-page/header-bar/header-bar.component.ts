@@ -12,11 +12,7 @@ export class HeaderBarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  getUrl(){
-    return this.router.url;
-  }
-
+  
   logout(){
     // this.authService.logout();
   }

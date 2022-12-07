@@ -1,8 +1,26 @@
 <html>
     <header>
+    
         <app-header-bar>
             <router-outlet></router-outlet>
         </app-header-bar>
     </header>
-    
+    <body>    
+        <main class="main">
+            <div class="main-container">
+                <div class="tweet">
+                    <div>Replying to {{username}}</div>
+                </div>
+                <div class="tweet-form">    
+                    <div>
+                        <form [formGroup]="tweetForm" (ngSubmit)="createPost()">
+                            <textarea [formControlName]="'tweetText'" id="post-form-text-area" class="post-tweet-text-area"
+                                name="post-tweet" rows="2" cols="50" placeholder="Post Tweet"></textarea>
+                                <input type="submit" [disabled]="!tweetForm.valid" value="Post">
+                        </form> 
+                    </div>
+                </div> 
+            </div>
+        </main>
+    </body>
 </html>

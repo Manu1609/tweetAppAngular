@@ -17,6 +17,17 @@ import { RetweetsComponent } from './main-page/retweets/retweets.component';
 import { UsersComponent } from './main-page/users/users.component';
 import { TweetComponent } from './tweet/tweet.component';
 import { ChangePasswordComponent } from './main-page/change-password/change-password.component';
+import { PostService } from './Service/PostService';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FontAwesomeModule ,FaIconLibrary } from '@fortawesome/angular-fontawesome';
+
+
 
 @NgModule({
   declarations: [
@@ -32,6 +43,8 @@ import { ChangePasswordComponent } from './main-page/change-password/change-pass
     UsersComponent,
     TweetComponent,
     ChangePasswordComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -39,9 +52,19 @@ import { ChangePasswordComponent } from './main-page/change-password/change-pass
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,    
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    FontAwesomeModule,
+    
+   
     
   ],
-  providers: [UserService],
-  bootstrap: [AppComponent]
+  providers: [UserService,PostService],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

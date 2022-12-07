@@ -19,6 +19,7 @@ const routes: Routes = [
   {path : "tweets" , component: TweetsComponent},
   {path : "users" , component: UsersComponent},
   {path : "changePassword" , component: ChangePasswordComponent},
+  {path : "logout" , component: UserComponent},
 ];
 
 @NgModule({

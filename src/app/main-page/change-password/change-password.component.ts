@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/Service/UserService';
 
 @Component({
   selector: 'app-change-password',
@@ -7,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  changePassword = new FormGroup({
+    newpassword: new FormControl('',[Validators.required]),
+      repassword: new FormControl('',[Validators.required])
+    });
+  newPassword: string;
+  rePassword: string;
+  changeStatus :Boolean;
+ 
+  constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
   }
+
+  changePW()
+{
+  this.newPassword = this.changePassword.value.newpassword;
+  this.rePassword = this.changePassword.value.repassword;
+
+  console.log(this.newPassword)
+  console.log(this.rePassword)
+  if(this.newPassword === this.rePassword){
+      this.userService.changePassword(this.newPassword).subscribe();
+      alert("Passwords changed successfully");
+  }
+  else{
+    alert("Passwords not matching")
+  }
+  
+}
+
 
 }

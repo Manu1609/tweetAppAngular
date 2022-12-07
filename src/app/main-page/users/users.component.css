@@ -1,3 +1,8 @@
-.usernametable{
-padding: 8px 25px;
+.container{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    display: grid 70px;
+    place-items: center;
+    padding-right: 150vh;
 }
