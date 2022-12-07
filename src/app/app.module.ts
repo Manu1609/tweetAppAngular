@@ -26,6 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FontAwesomeModule ,FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -59,9 +60,7 @@ import { FontAwesomeModule ,FaIconLibrary } from '@fortawesome/angular-fontaweso
     MatSelectModule,
     MatNativeDateModule,
     FontAwesomeModule,
-    
-   
-    
+    FlexLayoutModule,
   ],
   providers: [UserService,PostService],
   bootstrap: [AppComponent],
