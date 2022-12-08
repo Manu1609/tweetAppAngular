@@ -1,0 +1,22 @@
+<html>
+<body class="main">
+    <mat-card class="example-card" >
+        <form [formGroup]="tweetForm" (ngSubmit)="Update()">
+            <mat-card-content>
+                <div>
+                    <label>Tweet</label>
+                    <div>
+                        <span *ngIf="!tweetForm.get('userName')?.valid && tweetForm.get('username')?.touched"
+                            style="color:red ;">Please
+                            enter a username</span>
+                        <!-- <span *ngIf="username.errors?.['usernameExists']" style="color:red ;">This username has been taken</span> -->
+                        <input  type="text" autofocus  [formControlName]="'userName'"  value="{{tweetMessage}}">
+                    </div>
+                    <input type="submit" [disabled]="!tweetForm.valid" value="Update">
+                </div>
+            </mat-card-content>
+        </form>
+    </mat-card>
+</body>
+
+</html>

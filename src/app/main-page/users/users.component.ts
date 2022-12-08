@@ -11,6 +11,7 @@ import { UserService } from 'src/app/Service/UserService';
 export class UsersComponent implements OnInit {
 
   user: User | undefined;
+  searchText;
   constructor(private userService: UserService, private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {

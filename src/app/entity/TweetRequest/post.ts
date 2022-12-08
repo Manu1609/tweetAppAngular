@@ -4,4 +4,5 @@ export class Post{
     tweetDate : Date;
     likeCount : number;
     userName: string;
+    localDate:string;
 }

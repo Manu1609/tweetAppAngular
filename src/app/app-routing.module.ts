@@ -4,6 +4,7 @@ import { ChangePasswordComponent } from './main-page/change-password/change-pass
 import { HeaderBarComponent } from './main-page/header-bar/header-bar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { TweetsComponent } from './main-page/tweets/tweets.component';
+import { UpdateTweetComponent } from './main-page/update-tweet/update-tweet.component';
 import { UsersComponent } from './main-page/users/users.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path : "users" , component: UsersComponent},
   {path : "changePassword" , component: ChangePasswordComponent},
   {path : "logout" , component: UserComponent},
+  {path : "updateTweet" , component: UpdateTweetComponent},
 ];
 
 @NgModule({

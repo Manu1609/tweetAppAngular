@@ -9,8 +9,6 @@ import { TweetInput } from '../response/tweetInput';
 })
 export class TweetComponent extends TweetInput implements OnInit {
 
-  @Input() footer: Boolean = true;
-  @Input() counters: Boolean = false;
 
   constructor(private router: Router) { 
     super();
@@ -19,8 +17,5 @@ export class TweetComponent extends TweetInput implements OnInit {
   ngOnInit(): void {
   }
 
-  goToTweet(tweetId: number){
-    
-    this.router.navigate(["/tweet/" + tweetId], {state: {data: this.tweet}});
-  }
+ 
 }

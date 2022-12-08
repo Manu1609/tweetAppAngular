@@ -1,5 +1,7 @@
-export interface ReTweetPost{
+export class ReTweetPost{
+    reTweetId :number;
     tweetId :number;
+    reTweetTime : Date;
     reTweet : string;
-    likeCount : number;
+    username : string;
 }
