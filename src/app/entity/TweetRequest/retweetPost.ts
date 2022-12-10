@@ -4,4 +4,5 @@ export class ReTweetPost{
     reTweetTime : Date;
     reTweet : string;
     username : string;
+    localDate: string;
 }

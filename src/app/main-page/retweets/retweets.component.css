@@ -1,0 +1,28 @@
+.retweetForm {
+    font-size: small;
+    max-width: 400px;
+    margin-top: 1px;
+    margin-bottom: 10px;
+    background-color: beige;
+}
+
+
+
+.main {
+    max-width: 400px;
+}
+
+  .svg  {
+    
+    width: 15%;
+    height: auto;
+}
+.RetweetText{
+    
+    font-style: oblique;
+    border-radius: 20px !important;
+    background-color:white;
+}
+.RetweetTextfont{
+    margin-left: 10px;
+}

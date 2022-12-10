@@ -1,32 +1,32 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-      </head>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 <header>
     <app-header-bar></app-header-bar>
 </header>
 
 <body>
-    <p>All User data portalworks</p>
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a hero by id or name or country">
+    <input class="search" type="text" name="search" [(ngModel)]="searchText" autocomplete="on"
+        placeholder="Search Username">
     <div class="container">
-        <table class="table table-striped" border="2">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">userName</th>
-                </tr>
-            </thead>
-                <tbody>
-                    <tr *ngFor="let user of user">
-                        <td>{{user["userName"]}}</td>
+        <table class="usertable" class="table table-striped" border="2">
+            <tbody >
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">UserName</th>
                     </tr>
-                </tbody>
+                </thead>
+                <tr *ngFor="let user of user | filter:searchText">
+                    <td>{{user["userName"]}}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </body>
+
 </html>
-
-

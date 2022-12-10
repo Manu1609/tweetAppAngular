@@ -14,8 +14,9 @@
 }
 
 .sidebar-item-icon{
-    width: 28px;
-    margin-right: 1px;
+    width: 25px;
+    height: auto;
+
 }
 .main{
     margin-left: 20%;
@@ -28,8 +29,9 @@
     border: 1px solid rgb(3, 16, 3) ;
     border: 1px solid green ;
 }
-.like{
-    color: rgb(249, 24, 128);
+.likeposition{
+   margin-top: -3vh;
+   margin-left: 1vh;
 }
 .tweet{
     flex: center;
@@ -60,4 +62,31 @@ li{
 
 .tweetDate{
     margin-right: 1vh;
+}
+.tweet-card {
+    max-width: 400px;
+    border-color: rgb(9, 0, 0);
+    border-width: 20%;
+    background-color: bisque;
+    margin-bottom: 20px;
+    border-radius: 30px !important;
+}
+.tweetpart {
+    display: flex;
+    height: 7vh;
+    text-align: center;
+    border-radius: 20px !important;
+    justify-items: center;
+    margin-top: -2.4vh;
+    background-color: white;
+}
+.tweetMessage{
+    margin-left: 15px;
+}
+.edit-delete{
+    margin-top: -3vh;
+    margin-left: 35vh;
+}
+.retweet{
+    margin-top: -3vh;
 }

@@ -12,9 +12,8 @@
 
         <label>Username</label>
         <div>
-            <span *ngIf="!form.get('userName')?.valid && form.get('username')?.touched" style="color:red ;">Please
-                enter a username</span>
-            <!-- <span *ngIf="username.errors?.['usernameExists']" style="color:red ;">This username has been taken</span> -->
+            <span *ngIf="!form.get('userName')?.valid && form.get('userName')?.touched" style="color:red ;">Please
+                enter a valid username</span>
             <input [formControlName]="'userName'" type="text" autofocus>
         </div>
         <label>First Name</label>
@@ -34,7 +33,7 @@
        <div>
              <mat-form-field>
               <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker">
+              <input matInput [matDatepicker]="picker" [formControlName]="'dob'">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>

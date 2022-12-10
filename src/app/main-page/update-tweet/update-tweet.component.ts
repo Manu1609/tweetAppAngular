@@ -12,22 +12,18 @@ import { PostService } from 'src/app/Service/PostService';
 export class UpdateTweetComponent {
 
   // tweetForm: Post
+  userName :string = localStorage.getItem('currentUser');
+  username = this.userName.replace('"','').replace('"','');
 
   tweetForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
-    userName: new FormControl("", {
-      validators: [Validators.required],
-      updateOn: "blur"
-    }),
-    password: new FormControl("", Validators.required),
-    contactNumber: new FormControl("", Validators.required)
+    newTweet: new FormControl("", Validators.required),
   });
-  tweetid: number;
+  tweetid: string;
   tweets:Post;
   tweetMessage: string;
+  tweetPost: Post;
 
-  constructor(private postService: PostService,private route: ActivatedRoute){
+  constructor(private postService: PostService,private route: ActivatedRoute,private router:Router){
 
   }
 
@@ -50,7 +46,18 @@ export class UpdateTweetComponent {
     )
   }
 
-  Update(){
+  postUpdate(){
+    this.tweetPost = new Post();{
+    this.tweetPost.tweet = this.tweetForm.value.newTweet;
+    console.log(this.tweetPost.tweet)
+    }
 
-  }
+    this.postService.postUpdate(this.tweetPost,this.tweetid).subscribe(
+      (response: Post) => {
+        this.tweetPost = response;
+        console.log(this.tweetPost);
+        if(this.tweetPost !== null){
+          alert("Update Successfull")
+          this.router.navigate(['tweets']);
+        }})}
 }

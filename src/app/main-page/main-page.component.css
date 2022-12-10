@@ -1,14 +1,54 @@
-.example-card {
+.tweet-card {
     max-width: 400px;
-  }
-
-.tweetDate{
-    margin-right: 1vh;
+    border-color: rgb(9, 0, 0);
+    border-width: 20%;
+    background-color: bisque;
+    margin-bottom: 20px;
+    border-radius: 30px !important;
 }
-.tweet{
+
+.header {
+    max-width: 400px;
+    max-height: 500px;
+}
+
+.tweetDate {
+    margin-left: 120px;
+}
+
+.tweet {
     padding-bottom: 1%;
 }
-.sidebar-item, .button{
+.tweetMessage{
+    font-style: oblique;
+    margin-left: 15px;
+}
+
+.likes{
+    margin-top: -3.5vh;
+    margin-left: 10px;
+    margin-bottom: 1px;
+    max-width: 400px;
+    max-height: 1vh;
+    background-color: bisque;
+    display: flex;
+    justify-tracks: inherit;
+}
+
+.tweetpart {
+    display: flex;
+    /* border-style: outset; */
+    height: 7vh;
+    text-align: center;
+    border-radius: 20px !important;
+    /* justify-content:left; */
+    justify-items: center;
+    margin-top: -2.4vh;
+    background-color: white;
+}
+
+.sidebar-item,
+.button {
     font-size: 20px;
     font-weight: 700;
     padding: 15px;
@@ -18,18 +58,29 @@
     border-radius: 30px;
 }
 
-.sidebar-item:hover{
+.sidebar-item:hover {
     background-color: rgba(0, 0, 0, 0.09);
     cursor: pointer;
 }
 
-.sidebar-item-icon{
+.sidebar-item-icon {
     width: 28px;
     margin-right: 1px;
 }
-.main{
+
+.main {
     margin-left: 20%;
     margin-right: 50%;
-    /* border: 1px solid green ;
-    row-gap: 20vh; */ 
+    background-color: aliceblue;
+    border-radius: 30px !important;
+
+}
+
+.post-tweet-text-area {
+    max-width: 330px;
+    border-radius: 10px !important;
+    background-color: azure;
+}
+.ReTweetForm{
+    background-color: aliceblue;
 }

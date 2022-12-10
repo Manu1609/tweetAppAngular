@@ -1,7 +1,7 @@
 export class User{
     firstName: string;
     lastName: string;
-    dob: Date;
+    dob: string;
     contactNumber:string;
     userName: string;
     password: string;

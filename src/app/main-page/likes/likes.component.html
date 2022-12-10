@@ -1,10 +1,14 @@
-<p>likes works!</p>
-    <mat-card>
-      <div class="like-card" >
-          <fa-icon *ngIf="!isActive" (click)="like()" class="tweet-footer__icon" [icon]="faIcon">
-          </fa-icon>
-          <fa-icon *ngIf="isActive" (click)="like()" class="tweet-footer__icon" [icon]="faSolidIcon"
+<form>
+    <mat-card class="like-card" >
+      <div >
+          <mat-icon *ngIf="!isActive"  (click)="like()" class="tweet-footer__icon">
+            favorite
+          </mat-icon>
+          <mat-icon *ngIf="isActive"  (click)="like()" class="tweet-footer__icon" [icon]="faSolidIcon"
               [style.color]="'rgb(249, 24, 128)'">
-          </fa-icon>
+              favorite
+          </mat-icon>
+          {{tweetPost?.likeCount}}
         </div>
     </mat-card>
+</form>

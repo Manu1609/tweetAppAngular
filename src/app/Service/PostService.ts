@@ -27,17 +27,24 @@ export class PostService {
     public postCreate(post: Post):Observable<Post>{
         return this.http.post<Post>(`${this.apiServer}/${this.localuser}/add`,post);
     }
-
-    public getAllReTweets(tweetid: number): Observable<ReTweetPost> {
-        return this.http.get<ReTweetPost>(`${this.apiServer}/allRetweets/${tweetid}`);
+    public postUpdate(post: Post,tweetid: string):Observable<Post>{
+        return this.http.put<Post>(`${this.apiServer}/${this.localuser}${this.localUser}/update/${tweetid}`,post);
     }
 
-    public getLikeCount(tweetid: number): Observable<ReTweetPost> {
-        return this.http.get<ReTweetPost>(`${this.apiServer}/likeCount//${tweetid}`);
+    public getAllReTweets(tweetid: number): Observable<ReTweetPost[]> {
+        return this.http.get<ReTweetPost[]>(`${this.apiServer}/allRetweets/${tweetid}`);
     }
 
-    public getTweetsOfTweetId(tweetid: number): Observable<TweetResponse> {
+    public getLikeCount(tweetid: string): Observable<Post> {
+        return this.http.get<Post>(`${this.apiServer}/likeCount/${tweetid}`);
+    }
+
+    public getTweetsOfTweetId(tweetid: string): Observable<TweetResponse> {
         return this.http.get<TweetResponse>(`${this.apiServer}/getTweet/${tweetid}`);
+    }
+
+    public deleteTweet(tweetid: number): Observable<TweetResponse> {
+        return this.http.delete<TweetResponse>(`${this.apiServer}/${this.localuser}/delete/${tweetid}`);
     }
 
 }

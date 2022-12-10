@@ -2,10 +2,11 @@
     max-width: 400px;
   }
 .main{
-    display: flex;
+    /* display: flex; */
+	margin-left: 70vh;
     justify-content: center;
     justify-items: center;
-    margin-top: 10vh;
+    margin-top: 20vh;
 }
 
 body, html{
@@ -13,18 +14,7 @@ body, html{
     font-family: Roboto;
 }
 
-.container{
-	margin-right: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-}
 
-.container form{
-    display: flex;
-    flex-direction: column;
-}
 
 form label {
 	text-transform: uppercase;
@@ -32,15 +22,15 @@ form label {
 	letter-spacing: 3px;
     width: 500px;
 }
-input[type=text], input[type=contactNumber], input[type=password], select, textarea {
+input[type=text], input[type=newTweet], select, textarea {
 	width: 100%;
 	padding: 12px;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-radius: 5px;
 	box-sizing: border-box;
 	margin-top: 6px;
 	margin-bottom: 16px;
-	resize: vertical;
+	resize: vertical;	
 }
 input[type="submit"] {
 	background-color: #1d9bf0;

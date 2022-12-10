@@ -18,10 +18,10 @@ export class SignUpComponent implements OnInit {
   form = new FormGroup({
     firstName: new FormControl("", Validators.required),
     lastName: new FormControl("", Validators.required),
-    userName: new FormControl("", {
-      validators: [Validators.required],
-      updateOn: "blur"
-    }),
+    userName: new FormControl('', {
+      validators: [Validators.required,
+                  Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]}),
+    dob:new FormControl("", Validators.required),
     password: new FormControl("", Validators.required),
     contactNumber: new FormControl("", Validators.required)
   });
@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit {
     this.user.firstName = this.form.value.firstName;
     this.user.lastName = this.form.value.lastName;
     this.user.userName = this.form.value.userName;
-    //this.user.dob = this.formvalue;
+    this.user.dob = this.form.value.dob;
     this.user.password = this.form.value.password;
     this.user.contactNumber = this.form.value.contactNumber;
     console.log(this.user);
@@ -53,7 +53,6 @@ export class SignUpComponent implements OnInit {
         alert("User SignUp Successfull")
         this.router.navigate(['sign-in']);
       }
-    
     }
   )
   }

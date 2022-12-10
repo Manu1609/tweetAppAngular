@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entity/TweetRequest/post';
+import { ReTweetPost } from 'src/app/entity/TweetRequest/retweetPost';
 import { PostService } from 'src/app/Service/PostService';
+import { ReTweetService } from 'src/app/Service/ReTweetService';
 
 
 
@@ -21,17 +23,26 @@ export class TweetsComponent  implements OnInit {
   tweetForm = new FormGroup({
     tweetText: new FormControl("", Validators.required),
   });
-    constructor(private postService: PostService,private router:Router) { }
+  reTweets: ReTweetPost[];
+    constructor(private postService: PostService,private router:Router,private reTweetService:ReTweetService) { }
 
   ngOnInit()  {
     this.getAllTweetsOfUserName(this.localuser);
   }
+
+  
 
   public getAllTweetsOfUserName(localuser){
     this.postService.getAllTweetsOfUsername(this.localuser).subscribe(
       (response: Post[]) => {
         this.tweetPost = response;
         console.log(this.tweetPost);
+        if (this.tweetPost) {
+          for (let index = 0; index < this.tweetPost.length; index++) {
+            let datevalue = this.tweetPost[index].tweetDate;
+            this.tweetPost[index].localDate = new Date(datevalue).toLocaleDateString();
+          }
+        }
       },   
     )
   }
@@ -51,13 +62,41 @@ export class TweetsComponent  implements OnInit {
         console.log(newtweet);
         if(newtweet !== null){
           alert("Post Successfull")
-          // this.router.navigate(['']);
         }
-      
       }
     )
   }
 
+  deletePost(tweetid){
+    this.postService.deleteTweet(tweetid).subscribe( 
+      (data:any)=>{
+       this.getAllTweetsOfUserName(this.localuser);
+      }
+    );
+  }
+  public getAllReTweets(tweetid){
+    this.postService.getAllReTweets(tweetid).subscribe(
+      (response: ReTweetPost[]) => {
+        this.reTweets = response;
+        console.log(this.reTweets);
+        if (this.reTweets) {
+          for (let index = 0; index < this.reTweets.length; index++) {
+            let datevalue = this.reTweets[index].reTweetTime;
+            this.reTweets[index].localDate = new Date(datevalue).toLocaleDateString();
+            console.log(this.reTweets[index].localDate);
+          }
+        }
+      },   
+    )
+  }
+
+  deleteReTweet(retweetid){
+    this.reTweetService.deleteReTweet(retweetid).subscribe( 
+      // (data:any)=>{
+      //  this.getAllReTweets(this.tweetid);
+      // }
+    );
+  }
  
 
 

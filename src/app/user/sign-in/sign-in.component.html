@@ -9,7 +9,7 @@
         <form [formGroup]="loginUser">
             <label>Username</label>
             <div>
-                <span *ngIf="!loginUser.get('username')?.valid && loginUser.get('username')?.touched" style="color:red ;">Please enter a username</span>
+                <span *ngIf="!loginUser.get('username')?.valid && loginUser.get('username')?.touched" style="color:red ;">Please enter a valid username</span>
                 <input  formControlName="username" type="text">
             </div> 
             <label>Password</label>

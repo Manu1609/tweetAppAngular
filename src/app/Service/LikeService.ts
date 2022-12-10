@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { LikeRequest } from "../entity/Like/likeRequest";
 import { LikeResponse } from "../entity/Like/likeResponse";
 
 @Injectable({
@@ -18,7 +19,7 @@ export class LikeService {
     public getLike(tweetid: string): Observable<Boolean> {
         return this.http.get<Boolean>(`${this.apiServer}/${this.username}/getlike/${tweetid}`);
     }
-    public postLike(likeUpdate: LikeResponse,tweetid: number):Observable<LikeResponse>{
-        return this.http.post<LikeResponse>(`${this.apiServer}/${this.username}/likeupdate/${tweetid}/`,likeUpdate);
+    public likeUpdate(likeUpdateBoolean: LikeRequest,tweetid: string):Observable<LikeRequest>{
+        return this.http.post<LikeRequest>(`${this.apiServer}/${this.username}/likeupdate/${tweetid}`,likeUpdateBoolean);
     }
 }

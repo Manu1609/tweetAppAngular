@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../entity/TweetRequest/post';
 import { PostService } from '../Service/PostService';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
-import { library as legacyLibrary } from '@fortawesome/fontawesome-svg-core';
+
 import { ReTweetPost } from '../entity/TweetRequest/retweetPost';
+import { RetweetRequest } from '../entity/TweetRequest/reTweetRequest';
+import { ReTweetService } from '../Service/ReTweetService';
 
 @Component({
   selector: 'app-main-page',
@@ -15,79 +15,80 @@ import { ReTweetPost } from '../entity/TweetRequest/retweetPost';
 })
 export class MainPageComponent implements OnInit {
 
-  
 
-  userName :string = localStorage.getItem('currentUser');
-  username = this.userName.replace('"','').replace('"','');
+
+  userName: string = localStorage.getItem('currentUser');
+  username = this.userName.replace('"', '').replace('"', '');
   tweet: Post[] | undefined;
-  reTweet: ReTweetPost;
-  faIcon: any;
-  faSolidIcon: any;
-
-  tweetPost : Post;
+  
+  tweetPost: Post;
 
   tweetForm = new FormGroup({
     tweetText: new FormControl("", Validators.required),
   });
-  
-  
-  constructor(private postService: PostService, private route: ActivatedRoute,private router:Router) { 
-     legacyLibrary.add(faHeart, faSolidHeart);
+
+  reTweetForm = new FormGroup({
+    retweet: new FormControl("", Validators.required),
+  });
+  reTweets: ReTweetPost[];
+
+
+  constructor(private postService: PostService, private route: ActivatedRoute, private router: Router,private retweetService: ReTweetService) {
   }
 
   ngOnInit(): void {
     this.getAllTweets()
-   // this.getAllReTweets()
   }
 
-  public getAllTweets(){
+  public getAllTweets() {
     this.postService.getAllTweets().subscribe(
       (response: Post[]) => {
         this.tweet = response;
         console.log(this.tweet);
-        if(this.tweet)
-        {
+        if (this.tweet) {
           for (let index = 0; index < this.tweet.length; index++) {
-            let datevalue=this.tweet[index].tweetDate;
-            this.tweet[index].localDate=new Date(datevalue).toLocaleDateString();
-            
+            let datevalue = this.tweet[index].tweetDate;
+            this.tweet[index].localDate = new Date(datevalue).toLocaleDateString();
           }
         }
-        this.tweet=this.tweet.sort((this.tweet))
-      },   
-    ),
-    ()=>{
-    for (let index = 0; index < this.tweet.length; index++) {
-      let datevalue=this.tweet[index].tweetDate;
-      this.tweet[index].localDate=new Date(datevalue).toLocaleDateString();
-      alert(this.tweet[index].localDate);
-    }
-      
-    }
+      },
+    )
   }
-  createPost(){
-    this.tweetPost = new Post();{
-    this.tweetPost.tweet = this.tweetForm.value.tweetText;
-    this.tweetPost.userName = localStorage.getItem('currentUser');
-    this.tweetPost.likeCount = 0;
-    console.log(this.tweetPost.tweet)
+  createPost() {
+    this.tweetPost = new Post(); {
+      this.tweetPost.tweet = this.tweetForm.value.tweetText;
+      this.tweetPost.userName = localStorage.getItem('currentUser');
+      this.tweetPost.likeCount = 0;
+      console.log(this.tweetPost.tweet)
     }
 
     this.postService.postCreate(this.tweetPost).subscribe(
       (response: Post) => {
         this.tweetPost = response;
         console.log(this.tweetPost);
-        if(this.tweetPost !== null){
+        if (this.tweetPost !== null) {
           alert("Post Successfull")
-        }})}
-
-   public getAllReTweets(){
-          this.postService.getAllReTweets(70).subscribe(
-            (response: ReTweetPost) => {
-              this.reTweet = response;
-              console.log(this.reTweet);
-            },   
-          )
         }
-  
+      })
+  }
+
+  createRetweet(tweetid){
+   
+    let newRetweet = new RetweetRequest();{
+      newRetweet.retweet = this.reTweetForm.value.retweet;
+    console.log(newRetweet)
+    console.log(tweetid)
+    }
+
+    this.retweetService.reTweetCreate(tweetid,newRetweet).subscribe(
+      (response: RetweetRequest) => {
+        newRetweet = response;
+        console.log(newRetweet);
+        if(newRetweet !== null){
+          alert("ReTweet Successfull")
+        }
+      }
+    )
+  }
+ 
 }
