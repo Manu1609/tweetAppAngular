@@ -36,7 +36,6 @@ import { UserResponse } from "../response/userResponse";
 }
 
 public changePassword(password:string){
-  console.log(this.localuser)
   return this.http.post<Boolean>(`${this.apiServer}/changePassword/${this.localuser}/${password}`,this.localUser,this.password)
 }
 }

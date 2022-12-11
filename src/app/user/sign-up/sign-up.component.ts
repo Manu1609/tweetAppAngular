@@ -42,13 +42,11 @@ export class SignUpComponent implements OnInit {
     this.user.dob = this.form.value.dob;
     this.user.password = this.form.value.password;
     this.user.contactNumber = this.form.value.contactNumber;
-    console.log(this.user);
     };
 
   this.userService.userCreate(this.user).subscribe(
     (response: User) => {
       this.user = response;
-      console.log(this.user);
       if(this.user !== null){
         alert("User SignUp Successfull")
         this.router.navigate(['sign-in']);

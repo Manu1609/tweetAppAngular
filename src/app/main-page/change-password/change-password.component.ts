@@ -28,8 +28,6 @@ export class ChangePasswordComponent implements OnInit {
   this.newPassword = this.changePassword.value.newpassword;
   this.rePassword = this.changePassword.value.repassword;
 
-  console.log(this.newPassword)
-  console.log(this.rePassword)
   if(this.newPassword === this.rePassword){
       this.userService.changePassword(this.newPassword).subscribe();
       alert("Passwords changed successfully");

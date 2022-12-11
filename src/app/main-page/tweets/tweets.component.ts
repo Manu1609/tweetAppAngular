@@ -36,7 +36,6 @@ export class TweetsComponent  implements OnInit {
     this.postService.getAllTweetsOfUsername(this.localuser).subscribe(
       (response: Post[]) => {
         this.tweetPost = response;
-        console.log(this.tweetPost);
         if (this.tweetPost) {
           for (let index = 0; index < this.tweetPost.length; index++) {
             let datevalue = this.tweetPost[index].tweetDate;
@@ -53,13 +52,11 @@ export class TweetsComponent  implements OnInit {
     newtweet.tweet = this.tweetForm.value.tweetText;
     newtweet.userName = localStorage.getItem('currentUser');
     newtweet.likeCount = 0;
-    console.log(newtweet)
     }
 
     this.postService.postCreate(newtweet).subscribe(
       (response: Post) => {
         newtweet = response;
-        console.log(newtweet);
         if(newtweet !== null){
           alert("Post Successfull")
         }
@@ -78,12 +75,10 @@ export class TweetsComponent  implements OnInit {
     this.postService.getAllReTweets(tweetid).subscribe(
       (response: ReTweetPost[]) => {
         this.reTweets = response;
-        console.log(this.reTweets);
         if (this.reTweets) {
           for (let index = 0; index < this.reTweets.length; index++) {
-            let datevalue = this.reTweets[index].reTweetTime;
+            let datevalue = this.reTweets[index].retweettime;
             this.reTweets[index].localDate = new Date(datevalue).toLocaleDateString();
-            console.log(this.reTweets[index].localDate);
           }
         }
       },   

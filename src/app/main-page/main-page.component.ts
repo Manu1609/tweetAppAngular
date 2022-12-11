@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../entity/TweetRequest/post';
@@ -13,14 +13,13 @@ import { ReTweetService } from '../Service/ReTweetService';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit,OnChanges {
 
 
 
   userName: string = localStorage.getItem('currentUser');
   username = this.userName.replace('"', '').replace('"', '');
   tweet: Post[] | undefined;
-  
   tweetPost: Post;
 
   tweetForm = new FormGroup({
@@ -34,6 +33,9 @@ export class MainPageComponent implements OnInit {
 
 
   constructor(private postService: PostService, private route: ActivatedRoute, private router: Router,private retweetService: ReTweetService) {
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+   this.getAllTweets();
   }
 
   ngOnInit(): void {
@@ -59,36 +61,35 @@ export class MainPageComponent implements OnInit {
       this.tweetPost.tweet = this.tweetForm.value.tweetText;
       this.tweetPost.userName = localStorage.getItem('currentUser');
       this.tweetPost.likeCount = 0;
-      console.log(this.tweetPost.tweet)
     }
 
     this.postService.postCreate(this.tweetPost).subscribe(
       (response: Post) => {
         this.tweetPost = response;
-        console.log(this.tweetPost);
         if (this.tweetPost !== null) {
           alert("Post Successfull")
         }
+        this.getAllTweets();
       })
   }
-
   createRetweet(tweetid){
    
     let newRetweet = new RetweetRequest();{
       newRetweet.retweet = this.reTweetForm.value.retweet;
-    console.log(newRetweet)
-    console.log(tweetid)
+   
     }
 
     this.retweetService.reTweetCreate(tweetid,newRetweet).subscribe(
       (response: RetweetRequest) => {
         newRetweet = response;
-        console.log(newRetweet);
         if(newRetweet !== null){
           alert("ReTweet Successfull")
         }
       }
     )
+  }
+  ReloadLikes(){
+    alert('Hi')
   }
  
 }

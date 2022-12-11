@@ -41,7 +41,6 @@ export class UpdateTweetComponent {
     this.postService.getTweetsOfTweetId(this.tweetid).subscribe(
       (response: Post) => {
         this.tweetMessage = response.tweet;
-        console.log(this.tweets);
       },   
     )
   }
@@ -49,13 +48,11 @@ export class UpdateTweetComponent {
   postUpdate(){
     this.tweetPost = new Post();{
     this.tweetPost.tweet = this.tweetForm.value.newTweet;
-    console.log(this.tweetPost.tweet)
     }
 
     this.postService.postUpdate(this.tweetPost,this.tweetid).subscribe(
       (response: Post) => {
         this.tweetPost = response;
-        console.log(this.tweetPost);
         if(this.tweetPost !== null){
           alert("Update Successfull")
           this.router.navigate(['tweets']);

@@ -16,8 +16,8 @@ export class LikeService {
 
     private username = this.localUser.replace('"','').replace('"','');
 
-    public getLike(tweetid: string): Observable<Boolean> {
-        return this.http.get<Boolean>(`${this.apiServer}/${this.username}/getlike/${tweetid}`);
+    public getLike(tweetid: string): Observable<boolean> {
+        return this.http.get<boolean>(`${this.apiServer}/${this.username}/getlike/${tweetid}`);
     }
     public likeUpdate(likeUpdateBoolean: LikeRequest,tweetid: string):Observable<LikeRequest>{
         return this.http.post<LikeRequest>(`${this.apiServer}/${this.username}/likeupdate/${tweetid}`,likeUpdateBoolean);

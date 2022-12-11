@@ -12,6 +12,7 @@ import { ReTweetService } from 'src/app/Service/ReTweetService';
 })
 export class RetweetsComponent implements OnInit {
   @Input() tweetid = '';
+  @Input() DeleteOptionEnable: boolean;
   reTweets: ReTweetPost[];
 
   constructor(private postService: PostService, private route: ActivatedRoute,private router:Router,private retweetService:ReTweetService) { }
@@ -23,20 +24,25 @@ export class RetweetsComponent implements OnInit {
   public getAllReTweets(tweetid){
     this.postService.getAllReTweets(tweetid).subscribe(
       (response: ReTweetPost[]) => {
+        console.log(response);
         this.reTweets = response;
-        console.log(this.reTweets);
+        console.log("reTweet"+this.reTweets);
         if (this.reTweets) {
+          
           for (let index = 0; index < this.reTweets.length; index++) {
-            let datevalue = this.reTweets[index].reTweetTime;
+            if(this.reTweets[index].retweettime !=undefined)
+            {
+
+            let datevalue = this.reTweets[index].retweettime;
             this.reTweets[index].localDate = new Date(datevalue).toLocaleDateString();
-            console.log(this.reTweets[index].localDate);
+            }
           }
         }
       },   
     )
   }
 
-  deletePost(retweetid){
+  deleteReTweet(retweetid){
     this.retweetService.deleteReTweet(retweetid).subscribe( 
       (data:any)=>{
        this.getAllReTweets(this.tweetid);

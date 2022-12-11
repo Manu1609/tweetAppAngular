@@ -6,13 +6,19 @@
                     <mat-card-title class="svg"><img src="assets/svgicons/profile.svg" class="sidebar-item-icon"></mat-card-title>
                     <mat-card-subtitle>{{retweet.username}}</mat-card-subtitle>
                     <span class="tweetDate">
-                        <!-- &nbsp; &nbsp;&nbsp;  -->
-                      {{retweet.locaDate}}
+                        &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+                      {{retweet.localDate}}
                     </span>
+                    <mat-card-actions class="retweetDelete" align="end" *ngIf="DeleteOptionEnable">
+                        <button mat-button  (click)="deleteReTweet(retweet.retweetid)"><img src="assets/svgicons/delete.svg"
+                           class="deletesvg" ></button>
+                       
+                      </mat-card-actions>
                 </mat-card-header>
                 <mat-card-content  class="RetweetText">
                     <span class="RetweetTextfont">{{retweet.retweet}}</span>
                 </mat-card-content>
+              
             </mat-card>
         </div>
     </main>

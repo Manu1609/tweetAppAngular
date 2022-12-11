@@ -35,6 +35,7 @@
                 <mat-card-actions class="likeposition">
                     <span class="likes">
                         <app-likes [tweetid]="tweet.tweetid"></app-likes>
+                        <span >{{tweet.likeCount}}</span>
                     </span>
                 </mat-card-actions>
                 <mat-card-content>
@@ -50,7 +51,7 @@
                             </div>
                         </div>
                         <span>
-                            <app-retweets [tweetid]="tweet.tweetid"></app-retweets>
+                            <app-retweets [tweetid]="tweet.tweetid" [DeleteOptionEnable]=false></app-retweets>
                         </span>
                         
                     </mat-card>

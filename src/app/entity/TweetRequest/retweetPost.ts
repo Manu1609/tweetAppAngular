@@ -1,7 +1,7 @@
 export class ReTweetPost{
-    reTweetId :number;
+    retweetid :number;
     tweetId :number;
-    reTweetTime : Date;
+    retweettime : Date;
     reTweet : string;
     username : string;
     localDate: string;
