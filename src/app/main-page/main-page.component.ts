@@ -85,11 +85,8 @@ export class MainPageComponent implements OnInit,OnChanges {
         if(newRetweet !== null){
           alert("ReTweet Successfull")
         }
+        this.getAllTweets();
       }
     )
   }
-  ReloadLikes(){
-    alert('Hi')
-  }
- 
 }

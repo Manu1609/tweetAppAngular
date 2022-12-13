@@ -24,9 +24,7 @@ export class RetweetsComponent implements OnInit {
   public getAllReTweets(tweetid){
     this.postService.getAllReTweets(tweetid).subscribe(
       (response: ReTweetPost[]) => {
-        console.log(response);
         this.reTweets = response;
-        console.log("reTweet"+this.reTweets);
         if (this.reTweets) {
           
           for (let index = 0; index < this.reTweets.length; index++) {

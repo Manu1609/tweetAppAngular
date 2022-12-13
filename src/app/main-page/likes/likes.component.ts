@@ -4,6 +4,7 @@ import { LikeRequest } from 'src/app/entity/Like/likeRequest';
 import { Post } from 'src/app/entity/TweetRequest/post';
 import { LikeService } from 'src/app/Service/LikeService';
 import { PostService } from 'src/app/Service/PostService';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-likes',
@@ -13,6 +14,8 @@ import { PostService } from 'src/app/Service/PostService';
 export class LikesComponent implements OnInit {
 
   @Input() tweetid = '';
+  @Output() refresh = new EventEmitter<boolean>();
+  pageRefresh:boolean;
   isActive: Boolean;
   getLike: Boolean;
   likeBoolean: Boolean;
@@ -30,7 +33,6 @@ export class LikesComponent implements OnInit {
     this.postService.getLikeCount(this.tweetid).subscribe(
       (response: Post) => {
         this.tweetPost = response;
-        console.log(this.tweetPost);
       }
     )
   }
@@ -39,30 +41,21 @@ export class LikesComponent implements OnInit {
     if (!this.isActive) {
        this.likeUpdateBoolean = new LikeRequest(); {
         this.likeUpdateBoolean.tweetBoolean = true;
-        console.log(this.likeUpdateBoolean);
-        console.log(this.tweetPost.likeCount);
-        console.log(this.tweetid);
+        this.isActive =true;
         this.likeService.likeUpdate(this.likeUpdateBoolean, this.tweetid).subscribe(
           (response: LikeRequest) => {
             this.likeUpdateBoolean = response;
-            console.log(this.likeUpdateBoolean);
             let newtweet = new Post();{
               newtweet.userName = localStorage.getItem('currentUser');
               newtweet.likeCount = this.tweetPost.likeCount +1;
-              console.log(newtweet)
               }
           
               this.postService.postUpdate(newtweet,this.tweetid).subscribe(
                 (response: Post) => {
                   newtweet = response;
-                  console.log(newtweet);
-                  if(newtweet !== null){
-                  }
+                   this.getLikesCount();
                 }
-              ),
-            (data:any)=>{
-              this.likeService.getLike(this.tweetid).subscribe(response => this.isActive = response)
-              this.getLikesCount();             }
+              )
           }
         )
       }
@@ -71,31 +64,25 @@ export class LikesComponent implements OnInit {
       (this.isActive)  
         this.likeUpdateBoolean = new LikeRequest(); {
           this.likeUpdateBoolean.tweetBoolean = false;
-          console.log(this.likeUpdateBoolean);
+          this.isActive =false;
           this.likeService.likeUpdate(this.likeUpdateBoolean, this.tweetid).subscribe(
             (response: LikeRequest) => {
               this.likeUpdateBoolean = response;
-              console.log(this.likeUpdateBoolean);
               let newtweet = new Post();{
                 newtweet.userName = localStorage.getItem('currentUser');
                 newtweet.likeCount = this.tweetPost.likeCount - 1;
-                console.log(newtweet)
                 }
-            
                 this.postService.postUpdate(newtweet,this.tweetid).subscribe(
                   (response: Post) => {
                     newtweet = response;
-                    console.log(newtweet);
-                    if(newtweet !== null){
-                    }
+                      this.getLikesCount();
                   }
-                ),
-              (data:any)=>{
-                this.likeService.getLike(this.tweetid).subscribe(response => this.isActive = response)
-                this.getLikesCount();               }
+                )
+              
             }
           )
       }
     }
+
   }
 }

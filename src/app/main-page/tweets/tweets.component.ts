@@ -65,6 +65,7 @@ export class TweetsComponent  implements OnInit {
   }
 
   deletePost(tweetid){
+    
     this.postService.deleteTweet(tweetid).subscribe( 
       (data:any)=>{
        this.getAllTweetsOfUserName(this.localuser);

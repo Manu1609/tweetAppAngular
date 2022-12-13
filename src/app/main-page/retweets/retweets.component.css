@@ -4,12 +4,19 @@
     margin-top: 1px;
     margin-bottom: 10px;
     background-color: beige;
+
 }
 
 
 
 .main {
     max-width: 400px;
+    border-radius: 20px !important;
+}
+
+.main-container {
+    max-width: 400px;
+    border-radius: 20px !important;
 }
 
   .svg  {

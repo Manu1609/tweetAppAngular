@@ -32,22 +32,6 @@
       </mat-card-actions>
       <mat-card-content class="retweet">
         <app-retweets [tweetid]='tweet.tweetid' [DeleteOptionEnable]=true></app-retweets>
-        <!-- <div class="main-container">
-          <mat-card class="retweetForm" *ngFor="let retweet of reTweets">
-            <mat-card-header class="header">
-              <mat-card-title class="svg"><img src="assets/svgicons/profile.svg" class="sidebar-item-icon">
-              </mat-card-title>
-              <mat-card-subtitle>{{retweet.username}}</mat-card-subtitle>
-              <span class="tweetDate">
-                 &nbsp; &nbsp;&nbsp;  
-                {{retweet.locaDate}}
-              </span>
-            </mat-card-header>
-            <mat-card-content class="RetweetText">
-              <span class="RetweetTextfont">{{retweet.retweet}}</span>
-            </mat-card-content>
-          </mat-card>
-        </div> -->
       </mat-card-content>
     </mat-card>
   </main>
