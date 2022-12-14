@@ -42,13 +42,13 @@
         <label>Contact number</label>
         <div>
             <span *ngIf="!form.get('contactNumber')?.valid  && form.get('contactNumber')?.touched"
-                style="color:red ;">Please enter a valid NUMBER</span>
+                style="color:red ;">Please enter a valid Number</span>
             <input [formControlName]="'contactNumber'" type="text" required>
         </div>
         <label>Password</label>
         <div>
-            <span *ngIf="!form.get('password')?.valid && form.get('password')?.touched" style="color:red ;">Password
-                cannot be empty</span>
+            
+            <span *ngIf="!form.get('password')?.valid && form.get('password')?.touched" style="color:red ;">Password should be min 8 characters</span>
             <input [formControlName]="'password'" type="password">
         </div>
 

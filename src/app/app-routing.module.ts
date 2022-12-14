@@ -6,22 +6,24 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { TweetsComponent } from './main-page/tweets/tweets.component';
 import { UpdateTweetComponent } from './main-page/update-tweet/update-tweet.component';
 import { UsersComponent } from './main-page/users/users.component';
+import { AuthGuard } from './shared/auth.guard';
+import { AuthService } from './shared/auth.service';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path:'', component: UserComponent},
+  {path:'', component: UserComponent, pathMatch: 'full'},
   {path : "sign-in" , component: SignInComponent},
   {path : "sign-up" , component: SignUpComponent},
-  {path : "mainPage" , component: MainPageComponent},
-  {path : "app-header-bar" , component: HeaderBarComponent},
-  {path : "home" , component: MainPageComponent},
-  {path : "tweets" , component: TweetsComponent},
-  {path : "users" , component: UsersComponent},
-  {path : "changePassword" , component: ChangePasswordComponent},
-  {path : "logout" , component: UserComponent},
-  {path : "updateTweet" , component: UpdateTweetComponent},
+  {path : "mainPage" , component: MainPageComponent, canActivate:[AuthGuard]},
+  {path : "app-header-bar" , component: HeaderBarComponent, canActivate:[AuthGuard]},
+  {path : "home" , component: MainPageComponent, canActivate:[AuthGuard]},
+  {path : "tweets" , component: TweetsComponent, canActivate:[AuthGuard]},
+  {path : "users" , component: UsersComponent, canActivate:[AuthGuard]},
+  {path : "changePassword" , component: ChangePasswordComponent, canActivate:[AuthGuard]},
+  {path : "logout" , component: UserComponent, canActivate:[AuthGuard]},
+  {path : "updateTweet" , component: UpdateTweetComponent, canActivate:[AuthGuard]},
 ];
 
 @NgModule({

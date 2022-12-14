@@ -22,7 +22,7 @@
                 <span [routerLink]="'/changePassword'" class="icon-label">Change Password</span>
             </span>
             <span class="logout-btn">
-                <span [routerLink]="'/logout'" class="icon-label">Log Out</span>
+                <span (click)="logout()" class="icon-label">Log Out</span>
             </span>
         </span>
     </span>

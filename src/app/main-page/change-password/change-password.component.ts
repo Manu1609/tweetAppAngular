@@ -10,6 +10,9 @@ import { UserService } from 'src/app/Service/UserService';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  userName: string = localStorage.getItem('currentUser');
+  username = this.userName.replace('"', '').replace('"', '');
+
   changePassword = new FormGroup({
     newpassword: new FormControl('',[Validators.required]),
       repassword: new FormControl('',[Validators.required])
@@ -29,7 +32,7 @@ export class ChangePasswordComponent implements OnInit {
   this.rePassword = this.changePassword.value.repassword;
 
   if(this.newPassword === this.rePassword){
-      this.userService.changePassword(this.newPassword).subscribe();
+      this.userService.changePassword(this.username,this.newPassword).subscribe();
       alert("Passwords changed successfully");
   }
   else{

@@ -23,11 +23,15 @@ export class MainPageComponent implements OnInit,OnChanges {
   tweetPost: Post;
 
   tweetForm = new FormGroup({
-    tweetText: new FormControl("", Validators.required),
+    tweetText: new FormControl("",{
+      validators: [Validators.required, Validators.maxLength(144)]
+    }),
   });
 
   reTweetForm = new FormGroup({
-    retweet: new FormControl("", Validators.required),
+    retweet: new FormControl("",{
+      validators: [Validators.required, Validators.maxLength(144)]
+    }),
   });
   reTweets: ReTweetPost[];
 

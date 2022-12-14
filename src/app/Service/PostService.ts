@@ -12,39 +12,39 @@ export class PostService {
 
     constructor(private http: HttpClient) { }
 
-    private apiServer = "http://localhost:9090/api/v1.0/tweets";
+    private apiServer = "http://localhost:9090";
     private localUser = localStorage.getItem('currentUser');
 
     localuser = this.localUser.replace('"','').replace('"','');
 
     public getAllTweets(): Observable<Post[]> {
-        return this.http.get<Post[]>(`${this.apiServer}/all`);
+        return this.http.get<Post[]>(`${this.apiServer}/api/v1.0/tweets/all`);
     }
 
     public getAllTweetsOfUsername(username:string): Observable<Post[]> {
-        return this.http.get<Post[]>(`${this.apiServer}/${username}`);
+        return this.http.get<Post[]>(`${this.apiServer}/api/v1.0/tweets/${username}`);
     }
     public postCreate(post: Post):Observable<Post>{
-        return this.http.post<Post>(`${this.apiServer}/${this.localuser}/add`,post);
+        return this.http.post<Post>(`${this.apiServer}/api/v1.0/tweets/${this.localuser}/add`,post);
     }
     public postUpdate(post: Post,tweetid: string):Observable<Post>{
-        return this.http.put<Post>(`${this.apiServer}/${this.localuser}${this.localUser}/update/${tweetid}`,post);
+        return this.http.put<Post>(`${this.apiServer}/api/v1.0/tweets/${this.localuser}${this.localUser}/update/${tweetid}`,post);
     }
 
     public getAllReTweets(tweetid: number): Observable<ReTweetPost[]> {
-        return this.http.get<ReTweetPost[]>(`${this.apiServer}/allRetweets/${tweetid}`);
+        return this.http.get<ReTweetPost[]>(`${this.apiServer}/api/v1.0/tweets/allRetweets/${tweetid}`);
     }
 
     public getLikeCount(tweetid: string): Observable<Post> {
-        return this.http.get<Post>(`${this.apiServer}/likeCount/${tweetid}`);
+        return this.http.get<Post>(`${this.apiServer}/api/v1.0/tweets/likeCount/${tweetid}`);
     }
 
     public getTweetsOfTweetId(tweetid: string): Observable<TweetResponse> {
-        return this.http.get<TweetResponse>(`${this.apiServer}/getTweet/${tweetid}`);
+        return this.http.get<TweetResponse>(`${this.apiServer}/api/v1.0/tweets/getTweet/${tweetid}`);
     }
 
     public deleteTweet(tweetid: number): Observable<TweetResponse> {
-        return this.http.delete<TweetResponse>(`${this.apiServer}/${this.localuser}/delete/${tweetid}`);
+        return this.http.delete<TweetResponse>(`${this.apiServer}/api/v1.0/tweets/${this.localuser}/delete/${tweetid}`);
     }
 
 }

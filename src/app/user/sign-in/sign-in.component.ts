@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/Service/UserService';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,12 +22,12 @@ export class SignInComponent implements OnInit {
     username: new FormControl('', {
       validators: [Validators.required,
                   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]}),
-      password: new FormControl('', 
-         [Validators.required])
+      password: new FormControl('', {
+      validators:  [Validators.required,Validators.minLength(8)]})
     });
  
 
-  constructor( private http: HttpClient, private userService: UserService, private route: ActivatedRoute, private router: Router) { 
+  constructor( private http: HttpClient, private userService: UserService, private route: ActivatedRoute, private router: Router,private authService :AuthService) { 
   }
   ngOnInit(): void {
   }
@@ -36,6 +37,8 @@ export class SignInComponent implements OnInit {
       (response: Boolean) => {
         this.logInStatus = response;
         if(this.logInStatus){
+          localStorage.setItem("currentUser",JSON.stringify(this.loginUser.value.username));
+
             this.router.navigate(['mainPage']);
         }
         else if(this.logInStatus === false){
