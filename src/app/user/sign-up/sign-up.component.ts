@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    this.user = new User(); {
+      this.user = new User();{
       this.user.firstName = this.form.value.firstName;
       this.user.lastName = this.form.value.lastName;
       this.user.userName = this.form.value.userName;
@@ -51,7 +51,7 @@ export class SignUpComponent implements OnInit {
     this.userService.userCreate(this.user).subscribe(
       (response: User) => {
         this.user = response;
-        if (this.user !== null) {
+        if(this.user !== null){
           alert("User SignUp Successfull")
           this.router.navigate(['sign-in']);
         }
