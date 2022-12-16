@@ -10,12 +10,12 @@ svg{
 }
 
 .container{
+    margin-top: -12vh;
     margin-left: 75vh;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    /* min-height: 100%; */
-     min-height: 100vh;
+    min-height: 100vh;
     
 }
 
@@ -132,7 +132,7 @@ h3{
 
 .sign-up h4{
     font-size: 1rem;
-    margin-top: 6rem;
+    margin-top: 2rem;
 }
 
 .sign-in-btn{

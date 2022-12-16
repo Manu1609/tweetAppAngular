@@ -6,6 +6,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     </head>
     <body class="container">
+        <div class="home">
+            <button routerLink="" type="text" class="btn sign-up-btn">Home</button>
+
+        </div>
+
         <form [formGroup]="loginUser">
             <label>Username</label>
             <div>
@@ -19,7 +24,6 @@
             </div> 
             
             <button type="submit" [disabled]="!loginUser.valid" (click)="login()">Sing In</button>
-            <!-- <input type="submit" value="Sign in"> -->
         </form>
     </body>
 </html>

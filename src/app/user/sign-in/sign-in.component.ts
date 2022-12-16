@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/Service/UserService';
 import { AuthService } from 'src/app/shared/auth.service';
 

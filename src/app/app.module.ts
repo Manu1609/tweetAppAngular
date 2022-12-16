@@ -31,6 +31,7 @@ import { UpdateTweetComponent } from './main-page/update-tweet/update-tweet.comp
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatIconModule} from '@angular/material/icon'
 import { AuthGuard } from './shared/auth.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 
@@ -49,6 +50,7 @@ import { AuthGuard } from './shared/auth.guard';
     TweetComponent,
     ChangePasswordComponent,
     UpdateTweetComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

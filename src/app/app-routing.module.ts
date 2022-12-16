@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './main-page/change-password/change-password.component';
 import { HeaderBarComponent } from './main-page/header-bar/header-bar.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'', component: UserComponent, pathMatch: 'full'},
   {path : "sign-in" , component: SignInComponent},
   {path : "sign-up" , component: SignUpComponent},
+  {path : "forgotpw" , component: ForgotPasswordComponent},
   {path : "mainPage" , component: MainPageComponent, canActivate:[AuthGuard]},
   {path : "app-header-bar" , component: HeaderBarComponent, canActivate:[AuthGuard]},
   {path : "home" , component: MainPageComponent, canActivate:[AuthGuard]},

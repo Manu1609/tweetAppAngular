@@ -88,9 +88,6 @@ export class TweetsComponent  implements OnInit {
 
   deleteReTweet(retweetid){
     this.reTweetService.deleteReTweet(retweetid).subscribe( 
-      // (data:any)=>{
-      //  this.getAllReTweets(this.tweetid);
-      // }
     );
   }
  

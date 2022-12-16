@@ -30,4 +30,8 @@ import { UserResponse } from "../response/userResponse";
 public changePassword(username: string,password:string){
   return this.http.post<Boolean>(`${this.apiServer}/api/v1.0/tweets/changePassword/${username}/${password}`,this.username,this.password)
 }
+
+public forgotPassword(username: string){
+  return this.http.delete<Boolean>(`${this.apiServer}/api/v1.0/tweets/deletePassword/${username}`,this.username)
+}
 }
