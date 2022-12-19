@@ -12,7 +12,7 @@ export class PostService {
 
     constructor(private http: HttpClient) { }
 
-    private apiServer = "http://localhost:9090";
+    private apiServer = "http://tweetapplicationebs-env-2.eba-mmikn2n4.ap-south-1.elasticbeanstalk.com";
     private localUser = localStorage.getItem('currentUser');
 
     localuser = this.localUser.replace('"','').replace('"','');

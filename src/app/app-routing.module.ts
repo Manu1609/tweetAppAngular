@@ -8,7 +8,6 @@ import { TweetsComponent } from './main-page/tweets/tweets.component';
 import { UpdateTweetComponent } from './main-page/update-tweet/update-tweet.component';
 import { UsersComponent } from './main-page/users/users.component';
 import { AuthGuard } from './shared/auth.guard';
-import { AuthService } from './shared/auth.service';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { UserComponent } from './user/user.component';

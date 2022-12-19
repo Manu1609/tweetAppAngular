@@ -2,7 +2,6 @@ import { HttpClient, HttpContext, HttpHeaders, HttpParams } from "@angular/commo
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { User } from "../entity/UserRequest/user";
-import { UserResponse } from "../response/userResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +12,7 @@ import { UserResponse } from "../response/userResponse";
   
     constructor(private http: HttpClient){}
 
-    private apiServer = "http://localhost:9090";
+    private apiServer = "http://tweetapplicationebs-env-2.eba-mmikn2n4.ap-south-1.elasticbeanstalk.com";
   
     public getAllUsers():Observable<User>{
         return this.http.get<User>(`${this.apiServer}/api/v1.0/tweets/get`);
